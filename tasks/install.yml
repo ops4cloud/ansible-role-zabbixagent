@@ -1,0 +1,30 @@
+---
+- name: Install zabbix repository
+  package:
+    name: "{{zabbixagent_repo}}"
+    state: present
+  when: ansible_os_family != "Debian"
+
+- name: Install zabbix Debian repository
+  apt:
+    deb: "{{zabbixagent_repo}}"
+    update_cache: yes
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install zabbix-agent
+  package:
+    name:
+      - zabbix-agent2 
+      - zabbix-agent2-plugin-*
+    state: present
+
+- name: Configure zabbix-agent
+  template:
+    src: zabbix_agent2.conf.j2
+    dest: /etc/zabbix/zabbix_agent2.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0640
+  notify: Restart zabbix-agent
+    
