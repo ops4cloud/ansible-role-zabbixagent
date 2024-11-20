@@ -1,7 +1,8 @@
 ---
 # defaults file for ansible-role-zabbixagent
-zabbixagent_version: 6.2
+zabbixagent_version: 7.0
 zabbixagent_server:
+zabbixagent_serveractive:
 zabbixagent_listenip: "{{ ansible_default_ipv4.address }}"
 zabbixagent_sourceip: "{{ ansible_default_ipv4.address }}"
 zabbixagent_hostname:  "{{ inventory_hostname }}"

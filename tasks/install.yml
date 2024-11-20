@@ -3,6 +3,7 @@
   package:
     name: "{{zabbixagent_repo}}"
     state: present
+    disable_gpg_check: true
   when: ansible_os_family != "Debian"
 
 - name: Install zabbix Debian repository
