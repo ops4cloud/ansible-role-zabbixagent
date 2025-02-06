@@ -15,9 +15,7 @@
 
 - name: Install zabbix-agent
   package:
-    name:
-      - zabbix-agent2 
-      - zabbix-agent2-plugin-*
+    name: "{{ zabbixagent_pkgs }}"
     state: present
 
 - name: Configure zabbix-agent
@@ -28,4 +26,3 @@
     group: zabbix
     mode: 0640
   notify: Restart zabbix-agent
-    
