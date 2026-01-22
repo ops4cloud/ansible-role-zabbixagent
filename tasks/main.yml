@@ -1,7 +1,7 @@
 ---
 # tasks file for ansible-role-zabbixagent
 - name: "Include specific vars for OS {{ ansible_os_family }}_{{ ansible_distribution_major_version }}" 
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: "{{ ansible_distribution }}.yml"
 
 - name: Install of zabbix-agent
   include_tasks: install.yml
