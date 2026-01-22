@@ -6,7 +6,12 @@
     disable_gpg_check: true
   when: ansible_os_family != "Debian"
 
-- name: Install zabbix Debian repository
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Install zabbix repository
   apt:
     deb: "{{zabbixagent_repo}}"
     update_cache: yes
@@ -17,6 +22,7 @@
   package:
     name: "{{ zabbixagent_pkgs }}"
     state: present
+    
 
 - name: Configure zabbix-agent
   template:
